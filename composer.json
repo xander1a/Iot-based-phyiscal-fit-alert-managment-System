@@ -1,0 +1,19 @@
+{
+    "name": "alexandre/heart",
+    "description": "welcome",
+    "autoload": {
+        "psr-4": {
+            "Alexandre\\Heart\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "xandre1a",
+            "email": "dushimimanaalexandre1@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.8",
+        "yvesniyo/intouch-sms": "^5.0"
+    }
+}

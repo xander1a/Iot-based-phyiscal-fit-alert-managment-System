@@ -1,0 +1,34 @@
+<?php
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(E_ALL);
+require 'php-includes/connect.php';
+use Yvesniyo\IntouchSms\SmsSimple;
+
+    include_once("vendor/autoload.php");
+    /** @var \Yvesniyo\IntouchSms\SmsSimple */
+
+    // $staticDate = '04:00';
+
+    // $sql = "SELECT COUNT(*) AS count FROM ayatewe WHERE state = 0 AND TIME_FORMAT(NOW())";
+    // $stmt = $db->prepare($sql);
+    // $stmt->bindParam(':staticDate', $staticDate, PDO::PARAM_STR);
+    // $stmt->execute();
+    // $count = $stmt->fetchColumn();
+  
+
+
+
+
+    $messi="Newegg detected";
+    $sms = new SmsSimple();
+    $sms->recipients(["0783159293"])
+        ->message($messi)
+        ->sender("+250783159293")
+        ->username("dushime")
+        ->password("dushime1")
+        ->apiUrl("www.intouchsms.co.rw/api/sendsms/.json")
+        ->callBackUrl("");
+    print_r($sms->send());
+
+?>

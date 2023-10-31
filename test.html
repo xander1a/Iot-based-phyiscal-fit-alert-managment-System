@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Comments Section</title>
+</head>
+<body>
+    <div class="comments-container" id="comments-container">
+        <!-- Comments will be dynamically added here -->
+    </div>
+    <script src="script.js">
+
+
+
+// ... (previous code)
+
+function createComment(comment) {
+  const commentElement = document.createElement("div");
+  commentElement.classList.add("comment");
+
+  // You can create the comment HTML structure here based on your design
+  commentElement.innerHTML = `
+    <div class="user-info">
+      <img src="${comment.user.image.png}" alt="${comment.user.username}">
+      <span>${comment.user.username}</span>
+    </div>
+    <div class="content">
+      <p>${comment.content}</p>
+    </div>
+    <div class="metadata">
+      <span>${comment.createdAt}</span>
+      <button class="upvote">Upvote</button>
+      <span class="score">${comment.score}</span>
+      <button class="downvote">Downvote</button>
+      <button class="delete-comment">Delete</button>
+      <button class="update-comment">Update</button>
+    </div>
+  `;
+
+  // Add an event listener for the delete button
+  const deleteButton = commentElement.querySelector(".delete-comment");
+  deleteButton.addEventListener("click", () => {
+    // Implement the delete functionality here
+    // You may remove the commentElement from the DOM and update the data accordingly
+    commentElement.remove();
+  });
+
+  // Add an event listener for the update button
+  const updateButton = commentElement.querySelector(".update-comment");
+  updateButton.addEventListener("click", () => {
+    // Implement the update functionality here
+    // You can open a modal or create an inline form for updating the comment
+    // Update the comment content and handle form submission
+    // Example: openUpdateModal(comment);
+  });
+
+  // ... (continue with replies as needed)
+
+  commentsContainer.appendChild(commentElement);
+
+  if (comment.replies && comment.replies.length > 0) {
+    const repliesContainer = document.createElement("div");
+    repliesContainer.classList.add("replies-container");
+
+    comment.replies.forEach(reply => {
+      const replyElement = createComment(reply);
+      repliesContainer.appendChild(replyElement);
+    });
+
+    commentElement.appendChild(repliesContainer);
+  }
+
+  return commentElement;
+}
+
+// Create the comments based on the JSON data
+data.comments.forEach(comment => {
+  const commentElement = createComment(comment);
+  commentsContainer.appendChild(commentElement);
+});
+</script>
+</body>
+</html>
